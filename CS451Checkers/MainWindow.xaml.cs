@@ -23,10 +23,13 @@ namespace CS451Checkers
         public MainWindow()
         {
             InitializeComponent();
-            //DataContext = new ViewModelBase();
             Board.board = new Board();
-            Board board = Board.board;
-            board.MakeBoardDisplay(Tile_0_0,MainCanvas);
+            Board.board.MakeBoardDisplay(Tile_0_0,MainCanvas);
+
+            Board.board.Player1 = new Player();
+            Board.board.Player2 = new Player();
+
+
         }
     }
 }

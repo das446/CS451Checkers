@@ -10,7 +10,17 @@ namespace CS451Checkers
     {
 
         string Name;
-        PieceData[] pieces;
+        List<Piece> pieces = new List<Piece>();
+
+        public Piece selectedPiece;
+        public Direction selectedDirection;
+
+        public void MovePiece(Piece piece,Direction d)
+        {
+
+        }
+
+
 
     }
 }

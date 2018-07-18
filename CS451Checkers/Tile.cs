@@ -15,7 +15,7 @@ namespace CS451Checkers
         Brush color;
         Button button;
 
-        PieceData piece;
+        public Piece piece;
 
         public Tile(int x, int y, Brush color, Button button)
         {
@@ -26,9 +26,47 @@ namespace CS451Checkers
 
         }
 
+        
+
         public void Test()
         {
             Trace.WriteLine(x + "," + y);
         }
+
+        public void OnClick()
+        {
+            if (piece == null && Board.board.Player1.selectedPiece==null)
+            {
+                return;
+            }
+            else if (piece== null && Board.board.Player1.selectedPiece!=null)
+            {
+
+            }
+            else if (piece != null)
+            {
+                ClickedWithPiece();
+            }
+        }
+
+        public void ClickedWithPiece()
+        {
+            if (piece.owner != Board.board.Player1)
+            {
+                return;
+            }
+            List<Direction> moves = piece.ValidMoves();
+            if (moves.Count > 0)
+            {
+                Board.board.Player1.selectedPiece = piece;
+            }
+        }
+
+        public void UpdateDisplay()
+        {
+
+        }
     }
 }
+
+public enum Direction { NW,NE,SW,SE}

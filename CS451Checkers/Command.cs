@@ -21,7 +21,7 @@ namespace CS451Checkers
         {
             Button b = (Button)sender;
             Tile t = Board.board.GetTileFromButton(b.Name);
-            t.Test();
+            t.OnClick();
         }
     }
 }

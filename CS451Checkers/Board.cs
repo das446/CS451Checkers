@@ -12,7 +12,9 @@ namespace CS451Checkers
     class Board
     {
         public static Board board;
-        Tile[,] tiles = new Tile[8,8];
+        public Player Player1, Player2;
+        Tile[,] tiles = new Tile[8, 8];
+        Button[,] buttons = new Button[8, 8];
 
         public void MakeBoardDisplay(Button r, Canvas canvas)
         {
@@ -21,7 +23,7 @@ namespace CS451Checkers
             {
                 for (int x = 0; x < 8; x++)
                 {
-                    Brush c = (x + y) % 2 == 0 ? Brushes.Red : Brushes.Black; 
+                    Brush c = (x + y) % 2 == 0 ? Brushes.Red : Brushes.Black;
                     Button rec = new Button
                     {
                         Width = r.Width,
@@ -29,14 +31,15 @@ namespace CS451Checkers
                         Background = c,
                     };
                     int x2 = 7 - x;
-                    rec.Name = "Tile_"+x2+"_"+y;
+                    rec.Name = "Tile_" + x2 + "_" + y;
                     rec.Click += Command.OnClick;
                     canvas.Children.Add(rec);
-                    Canvas.SetTop(rec, scale*x);
-                    Canvas.SetLeft(rec, scale*y);
+                    Canvas.SetTop(rec, scale * x);
+                    Canvas.SetLeft(rec, scale * y);
 
-                    Tile tile = new Tile(x2,y, c, rec);
+                    Tile tile = new Tile(x2, y, c, rec);
                     tiles[x2, y] = tile;
+                    buttons[x2, y] = rec;
 
                 }
             }
@@ -49,7 +52,34 @@ namespace CS451Checkers
             string[] n = buttonName.Split('_');
             int x = int.Parse(n[1]);
             int y = int.Parse(n[2]);
-            return tiles[x, y];
+            return GetTile(x, y);
+        }
+
+        public Tile GetTile(int x, int y)
+        {
+            if (x < 0 || y < 0 || x > 7 || y > 7)
+            {
+                return null;
+            }
+            else
+            {
+                return tiles[x, y];
+            }
+        }
+
+        public void MovePiece(int startX, int startY, int newX, int newY)
+        {
+            GetTile(newX, newY).piece = GetTile(startX, startY).piece;
+            GetTile(startX, startY).piece = null;
+
+        }
+
+        public void JumpPiece(int startX, int startY, int newX, int newY, int jumpX, int jumpY)
+        {
+            GetTile(newX, newY).piece = GetTile(startX, startY).piece;
+            GetTile(startX, startY).piece = null;
+            GetTile(jumpX, jumpY).piece.Remove();
+
         }
     }
 }

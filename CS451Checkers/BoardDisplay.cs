@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CS451Checkers
 {
-    class BoardData
+    class BoardDisplay
     {
         
 
