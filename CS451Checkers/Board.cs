@@ -14,7 +14,8 @@ namespace CS451Checkers
         public static Board board;
         public Player Player1, Player2;
         Tile[,] tiles = new Tile[8, 8];
-        Button[,] buttons = new Button[8, 8];
+        
+        public BoardDisplay display;
 
         public void MakeBoardDisplay(Button r, Canvas canvas)
         {
@@ -23,28 +24,35 @@ namespace CS451Checkers
             {
                 for (int x = 0; x < 8; x++)
                 {
-                    Brush c = (x + y) % 2 == 0 ? Brushes.Red : Brushes.Black;
-                    Button rec = new Button
-                    {
-                        Width = r.Width,
-                        Height = r.Height,
-                        Background = c,
-                    };
-                    int x2 = 7 - x;
-                    rec.Name = "Tile_" + x2 + "_" + y;
-                    rec.Click += Command.OnClick;
-                    canvas.Children.Add(rec);
-                    Canvas.SetTop(rec, scale * x);
-                    Canvas.SetLeft(rec, scale * y);
-
-                    Tile tile = new Tile(x2, y, c, rec);
-                    tiles[x2, y] = tile;
-                    buttons[x2, y] = rec;
+                    MakeTile(r, canvas, scale, y, x);
 
                 }
             }
             r.Width = 0;
             r.Height = 0;
+
+
+        }
+
+        private void MakeTile(Button r, Canvas canvas, int scale, int y, int x)
+        {
+            Brush c = (x + y) % 2 == 0 ? Brushes.Red : Brushes.Black;
+            Button rec = new Button
+            {
+                Width = r.Width,
+                Height = r.Height,
+                Background = c,
+            };
+            int x2 = 7 - x;
+            rec.Name = "Tile_" + x2 + "_" + y;
+            rec.Click += Command.OnClick;
+            canvas.Children.Add(rec);
+            Canvas.SetTop(rec, scale * x);
+            Canvas.SetLeft(rec, scale * y);
+
+            Tile tile = new Tile(x2, y, c, rec);
+            tiles[x2, y] = tile;
+            display.buttons[x2, y] = rec;
         }
 
         public Tile GetTileFromButton(string buttonName)

@@ -17,6 +17,8 @@ namespace CS451Checkers
 
         public Piece piece;
 
+        public TileDisplay display;
+
         public Tile(int x, int y, Brush color, Button button)
         {
             this.x = x;

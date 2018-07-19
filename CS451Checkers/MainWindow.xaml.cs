@@ -25,6 +25,8 @@ namespace CS451Checkers
             InitializeComponent();
             Board.board = new Board();
             Board.board.MakeBoardDisplay(Tile_0_0,MainCanvas);
+            Board.board.display = new BoardDisplay();
+            Board.board.display.board = Board.board;
 
             Board.board.Player1 = new Player();
             Board.board.Player2 = new Player();
