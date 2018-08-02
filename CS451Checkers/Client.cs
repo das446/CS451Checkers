@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
@@ -27,6 +28,7 @@ namespace CS451Checkers.Networking
 
         void Update()
         {
+            
             if (socketReady)
             {
                 if (stream.DataAvailable)
@@ -61,6 +63,8 @@ namespace CS451Checkers.Networking
                 socketReady = true;
                 this.host = host;
                 this.port = port;
+                Update();
+                Send("Test");
 
             }
             catch (Exception e)
@@ -108,6 +112,7 @@ namespace CS451Checkers.Networking
         {
             if (Name == "" || Players.Any(x => x.name == Name)) { return; }
             GameClient c = new GameClient();
+            Trace.WriteLine("User Connected");
             c.name = Name;
             Players.Add(c);
 

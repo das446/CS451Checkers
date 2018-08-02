@@ -20,7 +20,7 @@ namespace CS451Checkers.Networking
 
         public static int portNumber = 6321;
 
-        public List<Client> Clients;
+        public List<Client> Clients = new List<Client>();
 
         void Start()
         {
@@ -52,11 +52,12 @@ namespace CS451Checkers.Networking
                 c.clientName = ClientName;
                 if (c.clientName == "") { c.clientName = "Host"; }
                 c.ConnectToServer(LocalIPAddress().ToString(), portNumber);
+                Trace.WriteLine(c.Name + " connected");
                 
             }
             catch (Exception e)
             {
-
+                Trace.WriteLine("Error Hosting");
             }
 
         }
@@ -79,6 +80,8 @@ namespace CS451Checkers.Networking
             }
             catch (Exception e)
             {
+                Trace.WriteLine("Error connecting to server");
+                Trace.WriteLine(e);
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,6 +34,21 @@ namespace CS451Checkers
             Connect.Visibility = Visibility.Hidden;
             IP.Content = "Waiting for another player...\n You're IP is " + GameManager.Instance.LocalIPAddress();
             GameManager.Instance.HostButton();
+
+            var th = new Thread(ExecuteInBackground);
+            th.Start();
+
+
+
+        }
+
+        private static void ExecuteInBackground()
+        {
+            while (true)
+            {
+                GameManager.Instance.server.Update();
+                Thread.Sleep(1000);
+            }
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)

@@ -8,6 +8,7 @@ using System.Net;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace CS451Checkers.Networking
 {
@@ -47,8 +48,9 @@ namespace CS451Checkers.Networking
 
         }
 
-        void Update()
+        public void Update()
         {
+            Trace.WriteLine("Update");
             if (!ServerStarted)
             {
                 return;
@@ -134,6 +136,16 @@ namespace CS451Checkers.Networking
         {
 
             string[] aData = data.Split('|');
+
+            switch (aData[0])
+            {
+                case "Test":
+                    Trace.WriteLine("Test OnIncomingData");
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         bool IsConnected(TcpClient c)
