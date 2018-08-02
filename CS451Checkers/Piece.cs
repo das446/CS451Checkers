@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace CS451Checkers
 {
-    class Piece
+    public class Piece
     {
         public Player owner;
         public int x, y;
 
+        /// <summary>
+        /// Moves a tile in a given direction
+        /// </summary>
+        /// <param name="d"></param>
         public void Move(Direction d)
         {
             if (d == Direction.NE)
             {
-                 Move(1, 1);
+                Move(1, 1);
             }
             else if (d == Direction.SE)
             {
@@ -31,6 +35,11 @@ namespace CS451Checkers
             }
         }
 
+        /// <summary>
+        /// Move tile based on x and y
+        /// </summary>
+        /// <param name="xDist"></param>
+        /// <param name="yDist"></param>
         void Move(int xDist, int yDist)
         {
             Tile next = Board.board.GetTile(x + xDist, y + yDist);
@@ -42,12 +51,12 @@ namespace CS451Checkers
             {
                 int newX = x + xDist;
                 int newY = y + yDist;
-                Board.board.MovePiece(x,y,newX,newY);
+                Board.board.MovePiece(x, y, newX, newY);
 
             }
             else if (next.piece.owner != owner)
             {
-                
+
                 xDist *= 2;
                 yDist *= 2;
                 Tile jump = Board.board.GetTile(x + xDist, y + yDist);
@@ -62,8 +71,8 @@ namespace CS451Checkers
 
                     int jumpX = x + xDist;
                     int jumpY = y + yDist;
-                    
-                    Board.board.JumpPiece(x, y, jumpedX,jumpedY, jumpX, jumpY);
+
+                    Board.board.JumpPiece(x, y, jumpedX, jumpedY, jumpX, jumpY);
                 }
                 else { return; }
             }
@@ -73,6 +82,11 @@ namespace CS451Checkers
             }
         }
 
+        /// <summary>
+        /// Checks if player can move in direction
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
         public bool CanMove(Direction d)
         {
             if (d == Direction.NE)
@@ -81,7 +95,7 @@ namespace CS451Checkers
             }
             else if (d == Direction.SE)
             {
-                return CanMove(1,-1);
+                return CanMove(1, -1);
             }
             else if (d == Direction.SW)
             {
@@ -94,6 +108,12 @@ namespace CS451Checkers
             return false;
         }
 
+        /// <summary>
+        /// Check if player can move based on x and y
+        /// </summary>
+        /// <param name="xDist"></param>
+        /// <param name="yDist"></param>
+        /// <returns></returns>
         bool CanMove(int xDist, int yDist)
         {
             Tile next = Board.board.GetTile(x + xDist, y + yDist);
@@ -127,11 +147,14 @@ namespace CS451Checkers
             }
         }
 
-        internal void Remove()
+        public void Remove()
         {
-            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns a list of valid moves
+        /// </summary>
+        /// <returns></returns>
         public List<Direction> ValidMoves()
         {
             List<Direction> moves = new List<Direction>();
@@ -154,7 +177,11 @@ namespace CS451Checkers
             return moves;
         }
     }
+
+
+    public struct Move
+    {
+        public Piece piece;
+        public Direction direction;
+    }
 }
-
-
-public enum Move { Invalid, Valid, Jump }

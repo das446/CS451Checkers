@@ -1,6 +1,6 @@
 ﻿namespace CS451Checkers
 {
-    class TileDisplay
+    public class TileDisplay
     {
         public Tile tile;
         //test3

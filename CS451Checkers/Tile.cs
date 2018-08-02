@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace CS451Checkers
 {
-    class Tile
+    public class Tile
     {
         int x, y;
         Brush color;

@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,10 +57,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BoardDisplay.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="GameManager.cs" />
+    <Compile Include="Lobby.xaml.cs">
+      <DependentUpon>Lobby.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Player.cs" />
+    <Compile Include="Server.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="TileDisplay.cs" />
     <Compile Include="ViewModel.cs" />
+    <Page Include="Lobby.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

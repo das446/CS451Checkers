@@ -2,7 +2,7 @@
 
 namespace CS451Checkers
 {
-    class BoardDisplay
+    public class BoardDisplay
     {
         public Board board;
         public Button[,] buttons;

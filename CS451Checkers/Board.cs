@@ -9,7 +9,7 @@ using System.Windows.Shapes;
 
 namespace CS451Checkers
 {
-    class Board
+    public class Board
     {
         public static Board board;
         public Player Player1, Player2;
@@ -34,6 +34,14 @@ namespace CS451Checkers
 
         }
 
+        /// <summary>
+        /// Makes a tile and it's display
+        /// </summary>
+        /// <param name="r">base button</param>
+        /// <param name="canvas"></param>
+        /// <param name="scale">size of tile</param>
+        /// <param name="y">y pos</param>
+        /// <param name="x">x pos</param>
         private void MakeTile(Button r, Canvas canvas, int scale, int y, int x)
         {
             Brush c = (x + y) % 2 == 0 ? Brushes.Red : Brushes.Black;

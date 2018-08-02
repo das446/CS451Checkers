@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CS451Checkers
 {
-    class Player
+    public class Player
     {
 
         string Name;
@@ -15,14 +15,33 @@ namespace CS451Checkers
         public Piece selectedPiece;
         public Direction selectedDirection;
 
+        /// <summary>
+        /// Move a piece in a direction
+        /// </summary>
+        /// <param name="piece"></param>
+        /// <param name="d"></param>
         public void MovePiece(Piece piece,Direction d)
         {
 
         }
 
+        public List<Move> ValidMoves()
+        {
+            List<Move> moves = new List<Move>();
+            foreach (Piece piece in pieces)
+            {
+                
+            }
+
+            return null;
+        }
 
 
 
+        
 
     }
+
+
 }
+
